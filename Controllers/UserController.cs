@@ -18,8 +18,8 @@ namespace FamilyAlbum.Controllers
         }
 
         [Authorize]
-        [HttpGet("UserPage")]
-        public async Task<IActionResult> UserPage()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var id = User.FindFirst(x => x.Type == "Id")?.Value;
             if (id == null) 
