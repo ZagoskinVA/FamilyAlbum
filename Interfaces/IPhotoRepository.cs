@@ -4,7 +4,9 @@ namespace FamilyAlbum.Interfaces
 {
     public interface IPhotoRepository
     {
-        List<Photo> GetUserPhotos(User user);
-        List<Photo> GetFriendsPhoto(User user, bool isFamily);
+        IEnumerable<Photo> GetUserPhotos(string userId);
+        IEnumerable<Photo> GetFriendsPhoto(string userId, bool isFamily = true);
+        Task SavePhotoAsync(Photo photo);
+        Task RemovePhotoAsync(Photo photo);
     }
 }

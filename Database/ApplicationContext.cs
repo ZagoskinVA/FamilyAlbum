@@ -8,6 +8,7 @@ namespace FamilyAlbum.Database
         public DbSet<User> Users { get; init; }
         public DbSet<Friend> Friends { get; init; }
         public DbSet<Photo> Photos { get; init; }
+        public DbSet<Notification> Notifications { get; init; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }

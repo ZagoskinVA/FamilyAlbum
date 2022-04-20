@@ -1,4 +1,5 @@
 ﻿using FamilyAlbum.Database;
+using FamilyAlbum.Interfaces;
 using FamilyAlbum.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace FamilyAlbum.Controllers
     public class UserController : ControllerBase
     {
 
-        private readonly UserRepository userRepository;
+        private readonly IUserRepository userRepository;
 
-        public UserController(UserRepository userRepository)
+        public UserController(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
@@ -29,10 +30,10 @@ namespace FamilyAlbum.Controllers
             var currentUser = userRepository.GetUserById(id);
             if (currentUser == null) 
             {
-                currentUser = new User { Id = id, FolderPath = $"D:/usr/{id}/", Name = User.FindFirst(x => x.Type == "Email")?.Value };
+                currentUser = new User { Id = id, FolderPath = $"D:/usr/{id}/",Name = User.FindFirst(x => x.Type == "Name")?.Value, Email = User.FindFirst(x => x.Type.Contains("email"))?.Value };
                 await userRepository.AddUserAsync(currentUser);
             }
-            return Ok(new { user = currentUser });
+            return Ok( new { Id = currentUser.Id, Email = currentUser.Email, Name = currentUser.Name } );
         }
     }
 }

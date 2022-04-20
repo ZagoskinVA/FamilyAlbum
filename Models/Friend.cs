@@ -7,7 +7,7 @@ namespace FamilyAlbum.Models
     {
         public string Id { get; init; }
         public string UserId { get; init; }
-        public bool IsFamily { get; init; }
+        public bool IsFamily { get; init; } = true;
         [ForeignKey("UserId")]
         public User User { get; init; }
         [ForeignKey("Id")]

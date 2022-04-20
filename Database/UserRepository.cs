@@ -18,6 +18,11 @@ namespace FamilyAlbum.Database
             await contex.SaveChangesAsync();
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return contex.Users.FirstOrDefault(x => x.Email == email);
+        }
+
         public User GetUserById(string id)
         {
             return contex.Users.FirstOrDefault(x => x.Id == id);

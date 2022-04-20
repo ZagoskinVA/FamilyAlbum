@@ -6,6 +6,7 @@ namespace FamilyAlbum.Interfaces
     {
         Task AddUserAsync(User user);
         User GetUserById(string id);
+        User GetUserByEmail(string email);
         IQueryable<User> GetUsers();
     }
 }
